@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ivan Jansen — Robotics &amp; Mechatronics</title>
+  <meta name="description" content="Ivan Jansen, engineering student at Simon Fraser University building robots, test rigs and embedded systems on the way into mechatronics.">
+  <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f4f1">
+  <script>
+    // Apply a saved appearance before first paint so the page never flashes.
+    try {
+      const saved = localStorage.getItem("appearance");
+      if (saved === "light" || saved === "dark") document.documentElement.dataset.appearance = saved;
+    } catch {}
+  </script>
+  <script src="appearance.js?v=1" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+  <!-- Drawing-sheet zone markers (decorative) -->
+  <div class="zones zones-top" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones zones-side" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+
+  <header class="topbar">
+    <p class="dwg">DWG&nbsp;IJ-001 <span aria-hidden="true">·</span> Rev&nbsp;C</p>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#bom">Toolkit</a></li>
+      </ul>
+    </nav>
+    <button class="appearance" type="button" aria-label="Switch to dark appearance">
+      <svg class="to-dark" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.2 1.3a6.8 6.8 0 1 0 8.5 8.5A5.6 5.6 0 0 1 6.2 1.3Z"/></svg>
+      <svg class="to-light" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 .9v1.6M8 13.5v1.6M.9 8h1.6M13.5 8h1.6M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></g></svg>
+    </button>
+  </header>
+
+  <main id="main">
+
+    <!-- Intro -->
+    <section class="intro" aria-labelledby="name">
+      <p class="label">Engineering student · Simon Fraser University</p>
+      <h1 id="name">Ivan Jansen</h1>
+      <p class="lede">
+        I build things that move and the rigs that prove they work. Right now that means a
+        PLC-driven gearbox test bench, a robot-arm digital twin, and research on neural-network
+        surrogates for 3D-printed lattices. I&rsquo;m heading into mechatronics and looking for
+        robotics internships for 2027.
+      </p>
+      <ul class="links">
+        <li><a href="https://github.com/IvanJansn">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/ivan-jansen-886b33308/">LinkedIn</a></li>
+      </ul>
+    </section>
+
+    <!-- Feature build -->
+    <section class="block" id="build" aria-labelledby="build-h">
+      <header class="block-head">
+        <p class="callout" aria-hidden="true">A</p>
+        <div>
+          <h2 id="build-h">LashLab — automated gearbox test bench</h2>
+          <p class="meta">In build · Oct 2026 · TwinCAT 3, Structured Text, CAN, Python, MATLAB, SQL</p>
+        </div>
+      </header>
+
+      <figure class="diagram">
+        <div class="diagram-scroll" tabindex="0" role="region" aria-label="LashLab system diagram, scrolls sideways on small screens">
+        <svg viewBox="0 0 720 220" role="img" aria-labelledby="dia-title dia-desc">
+          <title id="dia-title">LashLab system diagram</title>
+          <desc id="dia-desc">A TwinCAT 3 PLC runs the test sequence and talks to a Python bridge over ADS. The bridge talks to an ESP32 node over a CAN bus at 500 kilobits per second. The ESP32 drives a stepper motor into a planetary gearbox and reads two magnetic encoders, current and temperature. Every run is logged to a SQL database, which feeds the analysis and pass or fail report.</desc>
+          <g class="d-box">
+            <rect x="10" y="30" width="140" height="64"/>
+            <rect x="200" y="30" width="140" height="64"/>
+            <rect x="390" y="30" width="140" height="64"/>
+            <rect x="580" y="30" width="130" height="64"/>
+            <rect x="200" y="140" width="140" height="56"/>
+            <rect x="390" y="140" width="140" height="56"/>
+          </g>
+          <g class="d-text">
+            <text x="80" y="58">TwinCAT 3 PLC</text><text x="80" y="78" class="d-sub">ST sequencer</text>
+            <text x="270" y="58">Python bridge</text><text x="270" y="78" class="d-sub">pyads ↔ python-can</text>
+            <text x="460" y="58">ESP32 node</text><text x="460" y="78" class="d-sub">TWAI · watchdog</text>
+            <text x="645" y="58">Gearbox rig</text><text x="645" y="78" class="d-sub">2 encoders</text>
+            <text x="270" y="166">SQL log</text><text x="270" y="184" class="d-sub">runs · samples</text>
+            <text x="460" y="166">Analysis</text><text x="460" y="184" class="d-sub">pass / fail report</text>
+          </g>
+          <g class="d-line">
+            <path d="M150 62h50M340 62h50M530 62h50"/>
+            <path d="M270 94v46M340 168h50"/>
+          </g>
+          <g class="d-tag">
+            <text x="175" y="54">ADS</text>
+            <text x="365" y="54">CAN</text>
+            <text x="555" y="54">STEP</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>System layout. The PLC owns sequencing and safety; the ESP32 owns timing and stops the motor if the heartbeat goes quiet.</figcaption>
+      </figure>
+
+      <ul class="points">
+        <li>Six-stage test sequence in Structured Text: homing, backlash sweep, speed ramp, load step, thermal soak, fault injection.</li>
+        <li>Encoder, current and temperature frames over CAN, defined in a DBC file.</li>
+        <li>Every run logged to SQL; Python and MATLAB measure backlash, transmission error and efficiency.</li>
+      </ul>
+    </section>
+
+    <!-- Other work -->
+    <section class="block" id="work" aria-labelledby="work-h">
+      <header class="block-head">
+        <p class="callout" aria-hidden="true">B</p>
+        <div><h2 id="work-h">Other work</h2></div>
+      </header>
+
+      <ol class="details">
+        <li>
+          <p class="det-id" aria-hidden="true">B1</p>
+          <div>
+            <h3>PINN surrogate for printed lattices</h3>
+            <p class="meta">Research · SFU · Sep 2026 – now</p>
+            <p>Supporting a graduate thesis that trains a physics-informed neural network as a fast stand-in for simulation, then uses it to optimize the lattice inside a 3D-printed polymer cube.</p>
+          </div>
+        </li>
+        <li>
+          <p class="det-id" aria-hidden="true">B2</p>
+          <div>
+            <h3>ArmSim — robot-arm digital twin</h3>
+            <p class="meta">Apr 2025 · SolidWorks, 3D scanning, ROS2, RViz2, MQTT</p>
+            <p>Rebuilt a HiWonder arm from a STEP file in SolidWorks, designed gripper pads from a 3D scan of a chess queen, and drove the arm in RViz2 over MQTT.</p>
+          </div>
+        </li>
+        <li>
+          <p class="det-id" aria-hidden="true">B3</p>
+          <div>
+            <h3>MazeRunner — autonomous maze robot</h3>
+            <p class="meta">Aug 2024 · Python, C++, MATLAB, LEGO Mindstorms</p>
+            <p>Navigation code in three languages, with ultrasonic, touch and photoelectric sensing, QR-code reading and object handling.</p>
+          </div>
+        </li>
+        <li>
+          <p class="det-id" aria-hidden="true">B4</p>
+          <div>
+            <h3>Watershed — water conservation plan</h3>
+            <p class="meta">Nov 2025 · ESSS × MSESS × SEESS competition</p>
+            <p>A six-page IEEE report for a small town&rsquo;s water system, pitched to judges. Placed 4th of 14 teams.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Toolkit as a bill of materials -->
+    <section class="block" id="bom" aria-labelledby="bom-h">
+      <header class="block-head">
+        <p class="callout" aria-hidden="true">C</p>
+        <div><h2 id="bom-h">Toolkit</h2></div>
+      </header>
+      <div class="table-wrap">
+        <table class="bom">
+          <caption class="visually-hidden">Tools and skills, grouped by area</caption>
+          <thead>
+            <tr><th scope="col">Item</th><th scope="col">Area</th><th scope="col">Tools</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><th scope="row">Controls &amp; PLC</th><td>TwinCAT 3, Structured Text, Studio 5000</td></tr>
+            <tr><td>02</td><th scope="row">Robotics &amp; embedded</th><td>ROS2, RViz2, MQTT, CAN, ESP32, Raspberry Pi</td></tr>
+            <tr><td>03</td><th scope="row">Languages</th><td>Python, C/C++, MATLAB, Java, Bash, SQL</td></tr>
+            <tr><td>04</td><th scope="row">CAD &amp; electronics</th><td>SolidWorks, Fusion 360, KiCad, Altium, Proteus</td></tr>
+            <tr><td>05</td><th scope="row">Shop</th><td>Wiring, soldering, CNC machining, 3D scanning</td></tr>
+            <tr><td>06</td><th scope="row">Workflow</th><td>Git, Linux, Docker, AI-assisted debugging</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Title block -->
+  <footer class="titleblock" aria-label="Contact and details">
+    <dl>
+      <div class="tb-name"><dt>Drawn by</dt><dd>Ivan Jansen</dd></div>
+      <div><dt>School</dt><dd>Simon Fraser University, Burnaby BC</dd></div>
+      <div><dt>Program</dt><dd>BASc, Engineering Science</dd></div>
+      <div><dt>Expected grad</dt><dd>Dec 2027</dd></div>
+      <div><dt>Contact</dt><dd><a href="https://www.linkedin.com/in/ivan-jansen-886b33308/">LinkedIn</a> · <a href="https://github.com/IvanJansn">GitHub</a></dd></div>
+      <div><dt>Status</dt><dd>Open to 2027 robotics internships</dd></div>
+    </dl>
+  </footer>
+
+</div>
+
+</body>
+</html>
